@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+const bodyParser = require('body-parser');
+
 
 // Use Body Parser
 app.use(bodyParser.json());
