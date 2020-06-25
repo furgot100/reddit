@@ -29,7 +29,7 @@ module.exports = app => {
     //SHOW
     app.get("/posts/:id", function(req, res) {
         // LOOK UP THE POST
-        Post.findById(req.params.id)
+        Post.findById(req.params.id) //.lean()
           .then(post => {
             res.render("posts-show", { "post" : post.toObject() });
           })
