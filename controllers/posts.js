@@ -5,7 +5,9 @@ module.exports = app => {
     app.post('/posts/new', (req, res) => {
         // INSTANTIATE INSTANCE OF POST MODEL
         const post = new Post(req.body);
-        post.toObject()
+        
+        // post.toObject()
+        
         // SAVE INSTANCE OF POST MODEL TO DB
         post.save((err, post) => {
         // REDIRECT TO THE ROOT
@@ -29,7 +31,7 @@ module.exports = app => {
         // LOOK UP THE POST
         Post.findById(req.params.id)
           .then(post => {
-            res.render("posts-show", { post });
+            res.render("posts-show", { "post" : post.toObject() });
           })
           .catch(err => {
             console.log(err.message);
