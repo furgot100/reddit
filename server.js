@@ -31,6 +31,7 @@ app.get('/posts/new', (req,res) =>{
 })
 
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 
 
 module.exports = app;
