@@ -1,8 +1,13 @@
+require('dotenv').config();
+// Initialize
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const express = require('express')
 const app = express()
 const port = 3000
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
+
 
 
 // Use Body Parser
@@ -32,7 +37,7 @@ app.get('/posts/new', (req,res) =>{
 
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
-
+require('./controllers/auth.js')(app);
 
 module.exports = app;
 app.listen(port, () =>

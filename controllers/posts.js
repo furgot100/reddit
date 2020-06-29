@@ -29,7 +29,6 @@ module.exports = app => {
   //SHOW
   app.get("/posts/:id", function(req, res) {
     // LOOK UP THE POST
-    // LOOK UP THE POST
     Post.findById(req.params.id).populate('comments').then((post) => {
       res.render('posts-show', { "post": post.toObject() })
     }).catch((err) => {
@@ -37,15 +36,16 @@ module.exports = app => {
     })
   });
   
-  // Subreddits route
+  // SUBREDDIT
   app.get("/n/:subreddit", function(req, res) {
-    Post.find({ subreddit: req.params.subreddit })
-      .then(posts => {
-        res.render("posts-index", { "posts" : posts.toObject });
-      })
-      .catch(err => {
+    Post.find({ subreddit: req.params.subreddit }).then(posts => {
+        posts = posts.map(function(posts) { return posts.toObject(); });
+        console.log(posts)
+        res.render("posts-index", { posts });
+    })
+    .catch(err => {
         console.log(err);
-      });
+    });
   });
   
 };
